@@ -1,0 +1,26 @@
+.imgsize {
+    width: 100px;
+    height: 100px;
+}
+
+.greycolr {
+    color: #b0b0b0;
+}
+
+.isize {
+    font-size: 10px;
+}
+
+.fsize {
+    font-size: 10px;
+    height: fit-content;
+}
+
+.divsize {
+    height: 15px;
+}
+
+.mcolor {
+    border: 2px;
+    background-color: gray;
+}
