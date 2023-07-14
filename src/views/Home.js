@@ -1,15 +1,23 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Home() {
   // const handleonclick = () => {
   //   <Link to="/Login"></Link>;
   // };
 
+  const [agenda, setAgenda] = useState([]);
+
+  const getFetch = () => {
+    fetch("https://assets.breatheco.de/apis/fake/contact/agenda/feloman_agenda")
+      .then((res) => res.json())
+      .then((result) => setAgenda(result));
+  };
+  console.log(agenda);
   return (
-    <div className="mt-2">
+    <div className="mt-2" onLoad={getFetch}>
       <div className="navbar navbar-expand-lg bg-body-tertiary">
         <Link to="/login" className="btn btn-success ms-auto me-3">
           <button type="button" className="btn btn-success ms-auto me-3">
@@ -25,6 +33,7 @@ function Home() {
       <ul className="list-group list-group-flush container col-8 border border-secondary-subtle mt-5">
         <li className="list-group-item">
           <div className="d-flex">
+            espacio
             <div>
               <img
                 src="https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"
