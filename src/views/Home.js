@@ -1,20 +1,28 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home() {
+  // const handleonclick = () => {
+  //   <Link to="/Login"></Link>;
+  // };
+
   return (
     <div className="mt-2">
       <div className="navbar navbar-expand-lg bg-body-tertiary">
-        <button type="button" className="btn btn-success ms-auto me-3">
-          Add new contact
-        </button>
+        <Link to="/login" className="btn btn-success ms-auto me-3">
+          <button type="button" className="btn btn-success ms-auto me-3">
+            Add new contact
+          </button>
+        </Link>
       </div>
       {/* <div className="container">
         <ul>
           <li className="">contacto uno</li>
         </ul>
       </div> */}
-      <ul className="list-group list-group-flush container col-8 border border-secondary-subtle">
+      <ul className="list-group list-group-flush container col-8 border border-secondary-subtle mt-5">
         <li className="list-group-item">
           <div className="d-flex">
             <div>

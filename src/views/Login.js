@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="mt-1">
         <label for="inputPassword5" class="form-label">
           Full Name
@@ -57,7 +58,9 @@ function Login() {
           save
         </button>
       </div>
-      <p> or go back to contacts </p>
+      <Link to="/home">
+        <p> or go back to contacts </p>
+      </Link>
     </div>
   );
 }
