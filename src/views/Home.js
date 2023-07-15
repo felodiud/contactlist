@@ -25,13 +25,19 @@ function Home() {
   };
 
   const delfetch = (object) => {
-    fetch(`https://assets.breatheco.de/apis/fake/contact/${object}`)
+    fetch(`https://assets.breatheco.de/apis/fake/contact/${object}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    getFetch();
+  }, []);
+
   return (
-    <div className="mt-2" onlaod={getFetch()}>
+    <div className="mt-2">
       <div className="navbar navbar-expand-lg bg-body-tertiary">
         {/* <input
           type="text"
@@ -90,7 +96,7 @@ function Home() {
               <div className="col ms-5">
                 <i
                   className="fa-solid fa-trash float-end mt-3"
-                  onClick={delfetch(item.id)}
+                  onClick={() => delfetch(item.id)}
                 ></i>
               </div>
             </div>
