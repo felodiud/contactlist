@@ -9,16 +9,46 @@ function Home() {
   // };
 
   const [agenda, setAgenda] = useState([]);
+  const [uservalue, setUservalue] = useState("");
+  const [inputvalue, setInputvalue] = useState("");
 
+  const handlegetagenda = () => {
+    getFetch();
+    console.log(agenda);
+  };
+
+  // my agneda link https://assets.breatheco.de/apis/fake/contact/agenda/feloman_agenda
   const getFetch = () => {
-    fetch("https://assets.breatheco.de/apis/fake/contact/agenda/feloman_agenda")
+    fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/feloman_agenda`)
       .then((res) => res.json())
       .then((result) => setAgenda(result));
   };
-  console.log(agenda);
+
+  const delfetch = (object) => {
+    fetch(`https://assets.breatheco.de/apis/fake/contact/${object}`)
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div className="mt-2" onLoad={getFetch}>
+    <div className="mt-2" onlaod={getFetch()}>
       <div className="navbar navbar-expand-lg bg-body-tertiary">
+        {/* <input
+          type="text"
+          placeholder="agenda name"
+          className="ms-3"
+          value={uservalue}
+          onChange={(valor) => setUservalue(valor.target.value)}
+        ></input>
+        <button
+          type="button"
+          className=" ms-4 btn btn-success"
+          onClick={() => {
+            handlegetagenda();
+          }}
+        >
+          get agenda
+        </button> */}
         <Link to="/login" className="btn btn-success ms-auto me-3">
           <button type="button" className="btn btn-success ms-auto me-3">
             Add new contact
@@ -31,37 +61,41 @@ function Home() {
         </ul>
       </div> */}
       <ul className="list-group list-group-flush container col-8 border border-secondary-subtle mt-5">
-        <li className="list-group-item">
-          <div className="d-flex">
-            espacio
-            <div>
-              <img
-                src="https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"
-                className="mx-auto imgsize rounded-circle"
-              ></img>
-            </div>
-            <div className="ms-2 d-felx mt-2">
-              <strong>Hard coding contact </strong>
-              <div className="d-flex m-0 divsize">
-                <i className="fa-solid fa-location-dot greycolor me-2 mt-2 isize"></i>
-                <p className="fsize m-1 text-body-secondary">
-                  country, city, #####
-                </p>
+        {agenda.map((item, index) => (
+          <li className="list-group-item" key={index}>
+            <div className="d-flex">
+              <div>
+                <img
+                  src="https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"
+                  className="mx-auto imgsize rounded-circle"
+                ></img>
               </div>
-              <div className="d-flex m-0 divsize">
-                <i className="fa-solid fa-phone greycolor me-2 mt-2 isize"></i>
-                <p className="fsize m-1 text-body-secondary">Phone Number###</p>
+              <div className="ms-2 d-felx mt-2">
+                <strong>{item.full_name} </strong>
+                <div className="d-flex m-0 divsize">
+                  <i className="fa-solid fa-location-dot greycolor me-2 mt-2 isize"></i>
+                  <p className="fsize m-1 text-body-secondary">
+                    {item.address}
+                  </p>
+                </div>
+                <div className="d-flex m-0 divsize">
+                  <i className="fa-solid fa-phone greycolor me-2 mt-2 isize"></i>
+                  <p className="fsize m-1 text-body-secondary">{item.phone}</p>
+                </div>
+                <div className="d-flex m-0 divsize">
+                  <i className="fa-solid fa-envelope greycolor me-2 mt-2 isize"></i>
+                  <p className="fsize m-1 text-body-secondary">{item.email}</p>
+                </div>
               </div>
-              <div className="d-flex m-0 divsize">
-                <i className="fa-solid fa-envelope greycolor me-2 mt-2 isize"></i>
-                <p className="fsize m-1 text-body-secondary">email@emai.com</p>
+              <div className="col ms-5">
+                <i
+                  className="fa-solid fa-trash float-end mt-3"
+                  onClick={delfetch(item.id)}
+                ></i>
               </div>
             </div>
-            <div className="col ms-5">
-              <i className="fa-solid fa-trash float-end mt-3"></i>
-            </div>
-          </div>
-        </li>
+          </li>
+        ))}
       </ul>
     </div>
   );
